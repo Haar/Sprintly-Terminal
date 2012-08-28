@@ -23,6 +23,16 @@ class SprintlyConnector
     perform_and_capture_response(request)
   end
 
+  def product_overview(id)
+    request = authenticated_request(@api_url+"/products/#{id}.json")
+    perform_and_capture_response(request)
+  end
+
+  def items_for_product(id)
+    request = authenticated_request(@api_url+"/products/#{id}/items.json")
+    perform_and_capture_response(request)
+  end
+
   private
 
   def authenticated_request(url)
