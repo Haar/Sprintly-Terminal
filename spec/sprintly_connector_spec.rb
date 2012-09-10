@@ -1,8 +1,7 @@
 require 'sprintly_connector'
 load "sprintly_details.rb"
 
-describe SprintlyConnector do
-
+describe SprintlyConnector, integration: true do
   before(:all) do
     @sprintly = SprintlyConnector.new({email: ENV["sprintly_email"], api_key: ENV['sprintly_api_key']})
   end
@@ -41,7 +40,6 @@ describe SprintlyConnector do
   end
 
   describe :items_for_product do
-
     before(:all) do
       @items = @sprintly.items_for_product(ENV["sprintly_product_id"])
     end
@@ -57,7 +55,5 @@ describe SprintlyConnector do
     it "returns items for that product" do
       @items.first["product"].should == {"archived"=>0, "id"=>ENV["sprintly_product_id"].to_i, "name"=>ENV["sprintly_product_name"]}
     end
-
   end
-
 end
