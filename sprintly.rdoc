@@ -1,0 +1,5 @@
+= sprintly
+
+Generate this with
+    sprintly rdoc
+After you have described your command line interface

@@ -1,0 +1,6 @@
+= sprintly
+
+Describe your project here
+
+:include:sprintly.rdoc
+

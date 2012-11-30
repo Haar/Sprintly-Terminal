@@ -1,14 +1,14 @@
-require 'sprintly_connector'
+require 'sprintly'
 load "sprintly_details.rb"
 
-describe SprintlyConnector, integration: true do
+describe Sprintly::Connector, integration: true do
   before(:all) do
-    @sprintly = SprintlyConnector.new({email: ENV["sprintly_email"], api_key: ENV['sprintly_api_key']})
+    @sprintly = Sprintly::Connector.new({email: ENV["sprintly_email"], api_key: ENV['sprintly_api_key']})
   end
 
   describe :authentication do
     it "returns the request response as a hash" do
-      sprintly = SprintlyConnector.new({email: "incorrect_user_email", api_key: "incorrect_key"})
+      sprintly = Sprintly::Connector.new({email: "incorrect_user_email", api_key: "incorrect_key"})
       sprintly.authenticate!.should == {"message" => "Invalid or unknown user.", "code" => 403}
     end
   end
@@ -19,7 +19,7 @@ describe SprintlyConnector, integration: true do
     end
 
     it "returns an array of hashes representing each users product" do
-      @sprintly = SprintlyConnector.new({email: ENV["sprintly_email"], api_key: ENV['sprintly_api_key']})
+      @sprintly = Sprintly::Connector.new({email: ENV["sprintly_email"], api_key: ENV['sprintly_api_key']})
       @sprintly.products.first.class.should == Hash
       @sprintly.products.map(&:values).flatten.should include "Raptor"
     end
