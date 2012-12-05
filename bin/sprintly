@@ -23,7 +23,7 @@ default_value 'the default'
 arg_name 'The name of the argument'
 flag [:f,:flagname]
 
-desc 'Describe install here'
+desc 'creates a .sprintly file in your home folder; used by Sprint.ly CLI for authenticating your requests.'
 arg_name 'Describe arguments to install here'
 command :install do |c|
   c.desc 'Describe a switch to install'
@@ -34,12 +34,14 @@ command :install do |c|
   c.flag :f
   c.action do |global_options,options,args|
 
-    # Your command logic here
-
     # If you have any errors, just raise them
     # raise "that command made no sense"
 
-    puts "install command ran"
+    puts "Please enter your Sprint.ly username (email):"
+    username = gets
+    puts "Please enter your Sprint.ly API key:"
+    api_key = gets
+    puts "Thanks! Your details are currently stored in ~/.sprintlyrc to authorise your interactions using the Sprint.ly CLI"
   end
 end
 
