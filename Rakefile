@@ -11,10 +11,10 @@ RSpec::Core::RakeTask.new(:spec)
 Rake::RDocTask.new do |rd|
   rd.main = "README.rdoc"
   rd.rdoc_files.include("README.rdoc","lib/**/*.rb","bin/**/*")
-  rd.title = 'Sprint.ly CLI'
+  rd.title = 'Sly - Sprint.ly CLI'
 end
 
-spec = eval(File.read('sprintly.gemspec'))
+spec = eval(File.read('sly.gemspec'))
 
 Gem::PackageTask.new(spec) do |pkg|
 end

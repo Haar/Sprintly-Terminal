@@ -1,5 +1,5 @@
-= sprintly
+= sly
 
 Generate this with
-    sprintly rdoc
+    sly rdoc
 After you have described your command line interface

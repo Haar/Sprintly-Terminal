@@ -1,6 +1,6 @@
-= sprintly
+= sly
 
 Describe your project here
 
-:include:sprintly.rdoc
+:include:sly.rdoc
 

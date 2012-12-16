@@ -1,11 +1,11 @@
 #!/usr/bin/env ruby
 require 'gli'
 begin # XXX: Remove this begin/rescue before distributing your app
-require 'sprintly'
+require 'sly'
 rescue LoadError
   STDERR.puts "In development, you need to use `bundle exec bin/todo` to run your app"
   STDERR.puts "At install-time, RubyGems will make sure lib, etc. are in the load path"
-  STDERR.puts "Feel free to remove this message from bin/sprintly now"
+  STDERR.puts "Feel free to remove this message from bin/sly now"
   exit 64
 end
 
@@ -13,7 +13,7 @@ include GLI::App
 
 program_desc 'Sprint.ly CLI'
 
-version Sprintly::VERSION
+version Sly::VERSION
 
 desc 'Describe some switch here'
 switch [:s,:switch]
@@ -23,7 +23,7 @@ default_value 'the default'
 arg_name 'The name of the argument'
 flag [:f,:flagname]
 
-desc 'creates a .sprintly file in your home folder; used by Sprint.ly CLI for authenticating your requests.'
+desc 'creates a .slyrc file in your home folder; used by Sprint.ly CLI for authenticating your requests.'
 arg_name 'Describe arguments to install here'
 command :install do |c|
   c.desc 'Describe a switch to install'
@@ -41,7 +41,7 @@ command :install do |c|
     username = gets
     puts "Please enter your Sprint.ly API key:"
     api_key = gets
-    puts "Thanks! Your details are currently stored in ~/.sprintlyrc to authorise your interactions using the Sprint.ly CLI"
+    puts "Thanks! Your details are currently stored in ~/.slyrc to authorise your interactions using the Sprint.ly CLI"
   end
 end
 

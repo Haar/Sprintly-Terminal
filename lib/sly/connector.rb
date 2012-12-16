@@ -3,7 +3,7 @@ require 'uri'
 require 'curb'
 require 'json'
 
-class Sprintly::Connector
+class Sly::Connector
 
   attr :api
 

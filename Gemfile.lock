@@ -1,8 +1,10 @@
 PATH
   remote: .
   specs:
-    sprintly (0.0.1)
+    Sly (0.0.1)
+      curb (>= 0.8)
       gli (= 2.5.0)
+      json (>= 1.4)
 
 GEM
   remote: http://rubygems.org/
@@ -42,10 +44,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  Sly!
   aruba
   curb
   json
   rake
   rdoc
   rspec
-  sprintly!

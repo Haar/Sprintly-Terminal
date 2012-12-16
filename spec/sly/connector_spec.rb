@@ -1,33 +1,33 @@
-require 'sprintly'
+require 'sly'
 load "sprintly_details.rb"
 
-describe Sprintly::Connector, integration: true do
+describe Sly::Connector, integration: true do
   before(:all) do
-    @sprintly = Sprintly::Connector.new({email: ENV["sprintly_email"], api_key: ENV['sprintly_api_key']})
+    @sly = Sly::Connector.new({email: ENV["sprintly_email"], api_key: ENV['sprintly_api_key']})
   end
 
   describe :authentication do
     it "returns the request response as a hash" do
-      sprintly = Sprintly::Connector.new({email: "incorrect_user_email", api_key: "incorrect_key"})
-      sprintly.authenticate!.should == {"message" => "Invalid or unknown user.", "code" => 403}
+      sly = Sly::Connector.new({email: "incorrect_user_email", api_key: "incorrect_key"})
+      sly.authenticate!.should == {"message" => "Invalid or unknown user.", "code" => 403}
     end
   end
 
   describe :products do
     it "returns an array of the users products" do
-      @sprintly.products.class.should == Array
+      @sly.products.class.should == Array
     end
 
     it "returns an array of hashes representing each users product" do
-      @sprintly = Sprintly::Connector.new({email: ENV["sprintly_email"], api_key: ENV['sprintly_api_key']})
-      @sprintly.products.first.class.should == Hash
-      @sprintly.products.map(&:values).flatten.should include "Raptor"
+      @sly = Sly::Connector.new({email: ENV["sprintly_email"], api_key: ENV['sprintly_api_key']})
+      @sly.products.first.class.should == Hash
+      @sly.products.map(&:values).flatten.should include "Raptor"
     end
   end
 
   describe :product_overview do
     before(:all) do
-      @product = @sprintly.product_overview(ENV["sprintly_product_id"])
+      @product = @sly.product_overview(ENV["sprintly_product_id"])
     end
 
     it "returns a hash representation of that product" do
@@ -41,7 +41,7 @@ describe Sprintly::Connector, integration: true do
 
   describe :items_for_product do
     before(:all) do
-      @items = @sprintly.items_for_product(ENV["sprintly_product_id"])
+      @items = @sly.items_for_product(ENV["sprintly_product_id"])
     end
 
     it "returns an array of all tasks for that product" do
