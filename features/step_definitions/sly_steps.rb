@@ -15,3 +15,7 @@ end
 When /^I fill in my api key$/ do
   step %(I type "#{ENV["sprintly_api_key"]}")
 end
+
+And /^I should have a .slyrc file in my home directory$/ do
+  File.exists?(ENV["HOME"]+"/.slyrc").should be_true
+end

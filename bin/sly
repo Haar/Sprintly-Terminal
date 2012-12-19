@@ -41,7 +41,7 @@ command :install do |c|
     username = gets
     puts "Please enter your Sprint.ly API key:"
     api_key = gets
-    puts "Thanks! Your details are currently stored in ~/.slyrc to authorise your interactions using the Sprint.ly CLI"
+    Sly::Installer.process(username.strip, api_key.strip)
   end
 end
 
