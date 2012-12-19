@@ -1,5 +1,4 @@
-require 'sly'
-load "sprintly_details.rb"
+require 'spec_helper'
 
 describe Sly::Connector, integration: true do
   before(:all) do
