@@ -25,4 +25,16 @@ describe Sly::Installer do
     end
   end
 
+  describe :validate_install! do
+    it "throws an error if no ~/.slyrc file is found in the home directory" do
+      setup_empty_home_directory
+      expect { Sly::Installer.validate_install! }.to raise_exception "You have not setup Sly on your machine yet, please run the sly install command first."
+    end
+
+    it "runs silently if there is a ~/.slyrc file in the home directory" do
+      setup_complete_home_directory
+      expect { Sly::Installer.validate_install! }.to_not raise_exception "You have not setup Sly on your machine yet, please run the sly install command first."
+    end
+  end
+
 end

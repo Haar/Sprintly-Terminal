@@ -15,33 +15,21 @@ program_desc 'Sprint.ly CLI'
 
 version Sly::VERSION
 
-desc 'Describe some switch here'
-switch [:s,:switch]
-
-desc 'Describe some flag here'
-default_value 'the default'
-arg_name 'The name of the argument'
-flag [:f,:flagname]
-
 desc 'creates a .slyrc file in your home folder; used by Sprint.ly CLI for authenticating your requests.'
-arg_name 'Describe arguments to install here'
+skips_pre
 command :install do |c|
-  c.desc 'Describe a switch to install'
-  c.switch :s
-
-  c.desc 'Describe a flag to install'
-  c.default_value 'default'
-  c.flag :f
   c.action do |global_options,options,args|
-
-    # If you have any errors, just raise them
-    # raise "that command made no sense"
-
     puts "Please enter your Sprint.ly username (email):"
     username = gets
     puts "Please enter your Sprint.ly API key:"
     api_key = gets
     Sly::Installer.process(username.strip, api_key.strip)
+  end
+end
+
+desc 'setup the current folder to be associated with a Sprint.ly project.'
+command :setup do |c|
+  c.action do |global_options,options,args|
   end
 end
 
@@ -83,6 +71,7 @@ pre do |global,command,options,args|
   # chosen command
   # Use skips_pre before a command to skip this block
   # on that command only
+  Sly::Installer.validate_install!
   true
 end
 

@@ -14,6 +14,12 @@ class Sly::Installer
     end
   end
 
+  def self.validate_install!
+    unless File.exist?(ENV["HOME"]+"/.slyrc")
+      raise "You have not setup Sly on your machine yet, please run the sly install command first."
+    end
+  end
+
   private
 
   def self.create_file(username, password)

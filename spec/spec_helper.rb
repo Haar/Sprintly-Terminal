@@ -20,3 +20,13 @@ RSpec.configure do |config|
   end
 
 end
+
+def setup_empty_home_directory
+  File.delete(ENV["HOME"]+"/.slyrc") if File.exists?(ENV["HOME"]+"/.slyrc")
+end
+
+def setup_complete_home_directory
+  unless File.exists?(ENV["HOME"]+"/.slyrc")
+    file = File.open(ENV["HOME"]+"/.slyrc", "w") { |file| file.puts("#{ENV["sprintly_email"]}:#{ENV["sprintly_api_key"]}") }
+  end
+end
