@@ -7,6 +7,10 @@ class Sly::Connector
 
   attr :api
 
+  def self.connect_with_defaults
+    return self.new(default_details)
+  end
+
   def initialize(user_details = {}, api_url = "https://sprint.ly/api")
     @api_url = api_url
     @user_details = user_details
@@ -46,6 +50,19 @@ class Sly::Connector
   def perform_and_capture_response(request)
     request.perform
     JSON(request.body_str)
+  end
+
+  private
+
+  def self.default_details
+    details_file = File.join(ENV["HOME"], ".slyrc")
+    if File.exists?(details_file)
+      details = File.read(details_file)
+      email, api_key = details.split(":").map(&:strip)
+      return { email: email, api_key: api_key }
+    else
+      raise "Could not locate installation file at #{details_file}"
+    end
   end
 
 end

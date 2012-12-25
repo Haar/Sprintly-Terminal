@@ -9,6 +9,7 @@ ENV['PATH'] = "#{File.expand_path(File.dirname(__FILE__) + '/../../bin')}#{File:
 LIB_DIR = File.join(File.expand_path(File.dirname(__FILE__)),'..','..','lib')
 
 Before do
+  @aruba_timeout_seconds = 5
   # Using "announce" causes massive warnings on 1.9.2
   @puts = true
   @original_rubylib = ENV['RUBYLIB']
@@ -21,6 +22,9 @@ Before do
 end
 
 After do
+  rm_rf @dirs
   ENV['RUBYLIB'] = @original_rubylib
   ENV['HOME'] = @real_home
+  # Scrap everything ready to start again next time
+  rm_rf "/tmp"
 end

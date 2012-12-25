@@ -1,4 +1,7 @@
+require 'fileutils'
 require 'spec_helper'
+
+include FileUtils
 
 describe Sly::Connector, integration: true do
   before(:all) do
@@ -53,6 +56,33 @@ describe Sly::Connector, integration: true do
 
     it "returns items for that product" do
       @items.first["product"].should == {"archived"=>0, "id"=>ENV["sprintly_product_id"].to_i, "name"=>ENV["sprintly_product_name"]}
+    end
+  end
+
+  describe :connect_with_defaults do
+    before :each do
+      touch(File.join(ENV["HOME"], ".slyrc"))
+    end
+    context "having been installed" do
+      it "loads the default file location" do
+
+      end
+
+      it "returns a copy of itself initialized with values loaded from the HOME directory" do
+        Sly::Connector.should_receive(:new)
+        Sly::Connector.connect_with_defaults
+      end
+    end
+
+    context "not yet installed" do
+      before :each do
+        file_location = File.join(ENV["HOME"], ".slyrc")
+        rm_rf(file_location) if File.exists?(file_location)
+      end
+
+      it "raises an exception" do
+        expect { Sly::Connector.connect_with_defaults }.to raise_exception "Could not locate installation file at /tmp/fakehome/.slyrc"
+      end
     end
   end
 end
