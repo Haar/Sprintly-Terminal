@@ -1,4 +1,5 @@
 .sly
+.DS_Store
 *.gem
 *.rbc
 .bundle
