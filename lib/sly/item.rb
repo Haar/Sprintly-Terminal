@@ -12,7 +12,7 @@ class Sly::Item
   end
 
   def overview
-    self.prettify([@title, @number].join("\n#"), 40)
+    self.prettify([@title, @number].join("\n#"), 40)+"\n"
   end
 
   alias_method :to_s, :overview
