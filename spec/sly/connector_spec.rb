@@ -23,7 +23,7 @@ describe Sly::Connector, integration: true do
     it "returns an array of hashes representing each users product" do
       @sly = Sly::Connector.new({email: ENV["sprintly_email"], api_key: ENV['sprintly_api_key']})
       @sly.products.first.class.should == Hash
-      @sly.products.map(&:values).flatten.should include "Raptor"
+      @sly.products.map(&:values).flatten.should include ENV["sprintly_product_name"]
     end
   end
 
