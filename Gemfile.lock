@@ -3,7 +3,7 @@ PATH
   specs:
     Sly (0.0.1)
       curb (>= 0.8)
-      gli (= 2.5.0)
+      gli (>= 2.5.0)
       json (>= 1.4)
 
 GEM
