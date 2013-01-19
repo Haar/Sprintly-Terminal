@@ -9,12 +9,7 @@ spec = Gem::Specification.new do |s|
   s.platform = Gem::Platform::RUBY
   s.summary = 'A small set of tools for working with Sprint.ly without leaving the command line.'
 # Add your other files here if you make them
-  s.files = %w(
-    bin/sly
-    lib/sly/version.rb
-    lib/sly.rb
-    lib/sly/*.rb
-  )
+  s.files = Dir['bin/sly', 'lib/sly/version.rb', 'lib/sly.rb', 'lib/sly/*.rb']
   s.require_paths << 'lib'
   s.has_rdoc = true
   s.extra_rdoc_files = ['README.rdoc','sly.rdoc']
@@ -26,5 +21,5 @@ spec = Gem::Specification.new do |s|
   s.add_development_dependency('aruba')
   s.add_dependency('curb', '>= 0.8')
   s.add_dependency('json', '>= 1.4')
-  s.add_runtime_dependency('gli','2.5.0')
+  s.add_runtime_dependency('gli','>= 2.5.0')
 end
