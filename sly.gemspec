@@ -1,13 +1,14 @@
 # Ensure we require the local version and not one we might have installed already
 require File.join([File.dirname(__FILE__),'lib','sly','version.rb'])
 spec = Gem::Specification.new do |s|
-  s.name = 'sly'
-  s.version = Sly::VERSION
-  s.author = 'Robert White'
-  s.email = 'robert@terracoding.com'
-  s.homepage = 'http://tallguyrob.com'
-  s.platform = Gem::Platform::RUBY
-  s.summary = 'A small set of tools for working with Sprint.ly without leaving the command line.'
+  s.name        = 'sly'
+  s.version     = Sly::VERSION
+  s.author      = 'Robert White'
+  s.email       = 'robert@terracoding.com'
+  s.homepage    = 'http://tallguyrob.com'
+  s.platform    = Gem::Platform::RUBY
+  s.summary     = 'A small set of tools for working with Sprint.ly without leaving the command line.'
+  s.description = 'A small set of tools for working with Sprint.ly without leaving the command line.'
 # Add your other files here if you make them
   s.files = Dir['bin/sly', 'lib/sly/version.rb', 'lib/sly.rb', 'lib/sly/*.rb']
   s.require_paths << 'lib'
