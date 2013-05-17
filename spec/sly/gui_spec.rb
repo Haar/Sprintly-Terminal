@@ -34,7 +34,7 @@ describe Sly::GUI do
 
       describe "display_backlog" do
         it "displays the current project's backlog items" do
-          STDOUT.should_receive(:print).with("---------------- Backlog ----------------\n")
+          STDOUT.should_receive(:print).with("  ---------------- Backlog ----------------  \n")
           STDOUT.should_receive(:print).with(@project.backlog.first.overview)
           STDOUT.should_receive(:print).with("\n")
           Sly::GUI.display_backlog(@project)
@@ -43,7 +43,7 @@ describe Sly::GUI do
 
       describe "display_backlog" do
         it "displays the current project's in-progress items" do
-          STDOUT.should_receive(:print).with("---------------- Current ----------------\n")
+          STDOUT.should_receive(:print).with("  ---------------- Current ----------------  \n")
           STDOUT.should_receive(:print).with(@project.current.first.overview)
           STDOUT.should_receive(:print).with("\n")
           Sly::GUI.display_current(@project)
@@ -52,7 +52,7 @@ describe Sly::GUI do
 
       describe "display_backlog" do
         it "displays the current project's completed items" do
-          STDOUT.should_receive(:print).with("---------------- Completed ----------------\n")
+          STDOUT.should_receive(:print).with("  ---------------- Completed ----------------  \n")
           STDOUT.should_receive(:print).with(@project.complete.first.overview)
           STDOUT.should_receive(:print).with("\n")
           Sly::GUI.display_complete(@project)

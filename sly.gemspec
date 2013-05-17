@@ -1,7 +1,7 @@
 # Ensure we require the local version and not one we might have installed already
 require File.join([File.dirname(__FILE__),'lib','sly','version.rb'])
 spec = Gem::Specification.new do |s|
-  s.name = 'Sly'
+  s.name = 'sly'
   s.version = Sly::VERSION
   s.author = 'Robert White'
   s.email = 'robert@terracoding.com'

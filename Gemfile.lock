@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    Sly (0.0.1)
+    sly (0.0.1)
       curb (>= 0.8)
       gli (>= 2.5.0)
       json (>= 1.4)
@@ -26,7 +26,7 @@ GEM
     ffi (1.2.0)
     gherkin (2.11.5)
       json (>= 1.4.6)
-    gli (2.5.0)
+    gli (2.5.4)
     json (1.7.5)
     rake (10.0.2)
     rdoc (3.12)
@@ -44,10 +44,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  Sly!
   aruba
   curb
   json
   rake
   rdoc
   rspec
+  sly!

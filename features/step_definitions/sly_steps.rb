@@ -58,3 +58,15 @@ end
 Then /^I should see my stored project name in the stdout$/ do
   step %{Then the stdout should contain "#{ENV["sprintly_product_name"]}"}
 end
+
+Given /^I have already setup my project folder$/ do
+  @project = Sly::Project.new({"archived" => false,
+                               "name"     => ENV["sprintly_product_name"],
+                               "admin"    => true,
+                               "id"       => ENV["sprintly_product_id"].to_i})
+  @stub_connector = stub(:connector)
+  @stub_connector.stub(:items_for_product).with(@project.id).and_return(YAML::load(File.open("spec/fixtures/items.yml")))
+  Sly::Connector.stub(:connect_with_defaults).and_return(@stub_connector)
+  @project.update
+  ls
+end

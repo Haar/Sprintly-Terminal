@@ -8,6 +8,18 @@ class Sly::GUI
       get_project_id(manager)
     end
   end
+
+  def self.display_dashboard(project)
+    #table_columns = [{Backlog: project.backlog},
+    #                 {Current: project.current},
+    #                 {Complete: project.complete}]
+    #table_columns.each do |hash|
+    #  hash.each do |k,v|
+    #    p v.map(&:overview)
+    #  end
+    #end
+  end
+
   def self.display_backlog(project)
     self.display_items("Backlog", project.backlog)
   end
@@ -23,7 +35,7 @@ class Sly::GUI
   private
 
   def self.display_items(title, items)
-    STDOUT.print "---------------- #{title} ----------------\n"
+    STDOUT.print "  ---------------- #{title} ----------------  \n"
     items.map(&:print)
     STDOUT.print "\n"
   end
