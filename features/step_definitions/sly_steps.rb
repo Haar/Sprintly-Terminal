@@ -43,7 +43,6 @@ Given /^I am in a new project folder$/ do
   project_folder = "project"
   mkdir "tmp/aruba/project"
   cd project_folder
-  p Dir.pwd
 end
 
 When /^I select the intended project option$/ do
@@ -51,12 +50,7 @@ When /^I select the intended project option$/ do
 end
 
 Then /^I should have a \.sly file in my project folder$/ do
-  p pwd
-  File.exists?("tmp/aruba/project/.sly").should be_true
-end
-
-Then /^I should see my stored project name in the stdout$/ do
-  step %{Then the stdout should contain "#{ENV["sprintly_product_name"]}"}
+  File.exists?(".sly").should be_true
 end
 
 Given /^I have already setup my project folder$/ do
