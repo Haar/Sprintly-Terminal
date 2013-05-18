@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 require 'gli'
 require 'sly'
+
 begin # XXX: Remove this begin/rescue before distributing your app
 rescue LoadError
   STDERR.puts "In development, you need to use `bundle exec bin/todo` to run your app"
@@ -8,6 +9,8 @@ rescue LoadError
   STDERR.puts "Feel free to remove this message from bin/sly now"
   exit 64
 end
+
+SLY_PROJECT = File.join(".sly", "project")
 
 include GLI::App
 
@@ -43,7 +46,7 @@ end
 desc 'shows an overview of the current state of the project from backlog to complete.'
 command :dashboard do |c|
   c.action do |global_options,options,args|
-    project = Sly::Project.load(File.join(".sly", "project"))
+    project = Sly::Project.load(SLY_PROJECT)
     project.update
     Sly::GUI.display_dashboard(project)
   end
@@ -54,7 +57,7 @@ command :backlog do |c|
   arg_name :mine ,'mine Lists the items in the backlog which are assigned to you'
   arg_name :user, 'USER Lists the items in the backlog which are assigned to USER'
   c.action do |global_options,options,args|
-    project = Sly::Project.load(File.join(".sly", "project"))
+    project = Sly::Project.load(SLY_PROJECT)
     project.update
     Sly::GUI.display_backlog(project)
   end
@@ -63,7 +66,7 @@ end
 desc 'shows the current in-progress for the project.'
 command :current do |c|
   c.action do |global_options,options,args|
-    project = Sly::Project.load(File.join(".sly", "project"))
+    project = Sly::Project.load(SLY_PROJECT)
     project.update
     Sly::GUI.display_current(project)
   end
@@ -72,7 +75,7 @@ end
 desc 'shows the current completed items for the project.'
 command :complete do |c|
   c.action do |global_options,options,args|
-    project = Sly::Project.load(File.join(".sly", "project"))
+    project = Sly::Project.load(SLY_PROJECT)
     project.update
     Sly::GUI.display_complete(project)
   end
