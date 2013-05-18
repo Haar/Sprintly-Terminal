@@ -27,13 +27,20 @@ Feature: Sly contains the basic functionality required
     When I run the "sly" setup command
     And I select the intended project option
     Then I should have a .sly file in my project folder
-    And I should see my stored project name in the stdout
     And the stdout should contain "Thanks! That's Sly all setup for the current project, run `sly help` to see the commands available."
 
    Scenario: Sly Backlog
     Given I have already set up Sly
     And I have already setup my project folder
-    When I run the "sly backlog" command
+    When I run `sly backlog`
     Then the stdout should contain "Backlog"
+    And the stdout should contain "204"
+    And the stdout should contain "Add the ability to reply to comments via email."
+
+   Scenario: Sly Current
+    Given I have already set up Sly
+    And I have already setup my project folder
+    When I run `sly backlog`
+    Then the stdout should contain "Current"
     And the stdout should contain "204"
     And the stdout should contain "Add the ability to reply to comments via email."
