@@ -1,4 +1,6 @@
 require 'fileutils'
+require 'sly'
+require 'cucumber/rspec/doubles'
 
 include FileUtils
 
@@ -62,5 +64,5 @@ Given /^I have already setup my project folder$/ do
   @stub_connector.stub(:items_for_product).with(@project.id).and_return(YAML::load(File.open("spec/fixtures/items.yml")))
   Sly::Connector.stub(:connect_with_defaults).and_return(@stub_connector)
   @project.update
-  ls
+  Sly::Project.stub(:load).and_return(@project)
 end
