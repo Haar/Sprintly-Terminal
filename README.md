@@ -3,7 +3,6 @@ Sly
 
 Project to create a `nice` terminal interface for the Sprint.ly task management tool.
 
-
 ## Current Functionality
 
 - Install
@@ -12,6 +11,8 @@ Project to create a `nice` terminal interface for the Sprint.ly task management 
 - Setup
   - Associate your current working directory with a specific Sprint.ly project
   - Stores a .sly file in the project folder to store the linking details (specifically ID)
+- Stories
+  - A small overview of the backlog, current and completed columns
 
 ### Testing
 
