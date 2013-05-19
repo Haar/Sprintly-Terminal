@@ -1,10 +1,9 @@
-require 'fileutils'
 require 'sly'
 require 'cucumber/rspec/doubles'
 
 include FileUtils
 
-ARUBA_PREFIX = "aruba/tmp/"
+ARUBA_PREFIX = "tmp/aruba"
 
 When /^I get help for "([^"]*)"$/ do |app_name|
   @app_name = app_name
@@ -43,7 +42,7 @@ end
 
 Given /^I am in a new project folder$/ do
   project_folder = "project"
-  mkdir "tmp/aruba/project"
+  create_dir project_folder
   cd project_folder
 end
 
@@ -56,13 +55,18 @@ Then /^I should have a \.sly file in my project folder$/ do
 end
 
 Given /^I have already setup my project folder$/ do
+  steps %Q{Given I am in a new project folder}
   @project = Sly::Project.new({"archived" => false,
                                "name"     => ENV["sprintly_product_name"],
                                "admin"    => true,
                                "id"       => ENV["sprintly_product_id"].to_i})
   @stub_connector = stub(:connector)
-  @stub_connector.stub(:items_for_product).with(@project.id).and_return(YAML::load(File.open("spec/fixtures/items.yml")))
+  @stub_connector.stub(:items_for_product).and_return(YAML::load(File.open("spec/fixtures/items.yml")))
   Sly::Connector.stub(:connect_with_defaults).and_return(@stub_connector)
-  @project.update
   Sly::Project.stub(:load).and_return(@project)
+
+  create_dir '.sly'
+  write_file '.sly/project', @project.to_yaml
+  @project.update
+  @project.stub(:update)
 end
