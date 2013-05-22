@@ -38,6 +38,10 @@ describe Sly::Item do
     it "sets the status" do
       @item.status.should == "accepted"
     end
+
+    it "sets the type" do
+      @item.type.should == :task
+    end
   end
 
   describe :overview do

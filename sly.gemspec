@@ -23,4 +23,5 @@ spec = Gem::Specification.new do |s|
   s.add_dependency('curb', '>= 0.8')
   s.add_dependency('json', '>= 1.4')
   s.add_runtime_dependency('gli','>= 2.5.0')
+  s.add_runtime_dependency('rainbow')
 end
