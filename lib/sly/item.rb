@@ -2,7 +2,7 @@ require 'rainbow'
 
 class Sly::Item
 
-  TYPE_COLOR = { task: :default, test: :blue, defect: :red, story: :green }
+  TYPE_COLOR = { task: :black, test: :blue, defect: :red, story: :green }
 
   attr_accessor :number, :archived, :title, :score, :tags, :status, :type
 
