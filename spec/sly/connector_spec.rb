@@ -54,7 +54,7 @@ describe Sly::Connector, integration: true do
     end
 
     it "returns items for that product" do
-      @items.first["product"].should == {"archived"=>0, "id"=>ENV["sprintly_product_id"].to_i, "name"=>ENV["sprintly_product_name"]}
+      @items.first["product"].should == {"archived"=> false, "id"=>ENV["sprintly_product_id"].to_i, "name"=>ENV["sprintly_product_name"]}
     end
   end
 
