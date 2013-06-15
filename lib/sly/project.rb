@@ -1,6 +1,7 @@
 require 'sly'
 require "yaml"
 require 'fileutils'
+require 'rainbow'
 
 class Sly::Project
   include FileUtils
@@ -32,8 +33,13 @@ class Sly::Project
   end
 
   def update
-    download_child_items
-    save_child_items
+    begin
+      download_child_items
+      save_child_items
+    rescue Exception
+      puts " Failed to connect to the Sprint.ly service, using last known values. ".colour(:white).background(:red)
+      load_child_items
+    end
   end
 
   def backlog
@@ -58,6 +64,11 @@ class Sly::Project
   def save_child_items
     target_file = File.join(pwd, '.sly', 'items')
     File.open(target_file, 'w') { |file| file.write @items.to_yaml }
+  end
+
+  def load_child_items
+    target_file = File.join(pwd, '.sly', 'items')
+    @items = YAML::load(File.open(target_file))
   end
 
 end
