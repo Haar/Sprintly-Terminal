@@ -6,6 +6,8 @@ gem "json"
 
 gem "rainbow"
 
-group :test do
+group :development, :test do
+  gem "cucumber"
   gem "rspec"
+  gem "webmock"
 end

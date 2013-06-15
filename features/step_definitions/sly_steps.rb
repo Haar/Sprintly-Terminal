@@ -15,29 +15,16 @@ When /^I run the "(.*?)" (.*?) command$/ do |app_name, command|
   step %(I run `#{app_name} #{command}` interactively)
 end
 
-When /^I fill in my username$/ do
-  step %(I type "#{ENV["sprintly_email"]}")
-end
-
-When /^I fill in my api key$/ do
-  step %(I type "#{ENV["sprintly_api_key"]}")
-end
-
 And /^I should have a "([^"]*)" file in my home directory$/ do |file_name|
   File.exists?(ENV["HOME"]+"/"+file_name).should be_true
 end
 
 Given /^I have already set up Sly$/ do
-  steps %Q{
-    When I run the "sly" install command
-    And I fill in my username
-    And I fill in my api key
-    Then the stdout should contain "Thanks! Your details are currently stored in ~/.slyrc to authorise your interactions using the Sprint.ly CLI"
-  }
+  File.open(File.join(ENV["HOME"], ".slyrc"), "w") { |f| f.write "foo:bar" }
 end
 
 Given /^I do not have a "(.*?)" file in my home directory$/ do |file_name|
-  File.delete(ENV["HOME"]+"/"+file_name) if File.exists?(ENV["HOME"]+"/"+file_name)
+  File.delete(ENV["HOME"]+"/"+file_name) if File.exists?(File.join(ENV["HOME"], file_name))
 end
 
 Given /^I am in a new project folder$/ do
@@ -55,7 +42,7 @@ Then /^I should have a \.sly file in my project folder$/ do
 end
 
 Given /^I have already setup my project folder$/ do
-  steps %Q{Given I am in a new project folder}
+  step %(I am in a new project folder)
   @project = Sly::Project.new({"archived" => false,
                                "name"     => ENV["sprintly_product_name"],
                                "admin"    => true,
@@ -69,4 +56,31 @@ Given /^I have already setup my project folder$/ do
   write_file '.sly/project', @project.to_yaml
   @project.update
   @project.stub(:update)
+end
+
+When /^I install sly using a correct username and api key$/ do
+  stub_request(:get, "https://foo:bar@sprint.ly/api/products.json").to_return(body: "[]")
+  stub_request(:get, "https://sprint.ly/api/products.json").to_return(body: "[]")
+  steps %Q{
+    When I run the "sly" install command
+    And I type "foo"
+    And I type "bar"
+  }
+end
+
+Then /^I should see the output has asked me for my details$/ do
+  steps %Q{
+    Then the output should contain "Please enter your Sprint.ly username (email):"
+    And the output should contain "Please enter your Sprint.ly API key:"
+  }
+end
+
+Then /^I should see that it has authorised correctly$/ do
+  steps %Q{
+    And the output should contain "Thanks! Your details are currently stored in ~/.slyrc to authorise your interactions using the Sprint.ly CLI"
+    And I should have a ".slyrc" file in my home directory
+  }
+end
+
+When /^I try the same step again$/ do
 end
