@@ -67,8 +67,8 @@ describe Sly::Item do
       @item = Sly::Item.new(@item_hash)
     end
 
-    it "prints the item to the STDOUT" do
-      STDOUT.should_receive(:print)
+    it "prints the item to the FOO" do
+      $stdout.should_receive(:print)
       @item.print
     end
   end

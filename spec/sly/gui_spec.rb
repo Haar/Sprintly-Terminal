@@ -15,18 +15,18 @@ describe Sly::GUI do
 
   describe "display_backlog" do
     it "displays the current project's backlog items" do
-      STDOUT.should_receive(:print).with("  ---------------- Backlog ----------------  \n")
-      STDOUT.should_receive(:print).with(@project.backlog.first.overview)
-      STDOUT.should_receive(:print).with("\n")
+      $stdout.should_receive(:print).with("  ---------------- Backlog ----------------  \n")
+      $stdout.should_receive(:print).with(@project.backlog.first.overview)
+      $stdout.should_receive(:print).with("\n")
       Sly::GUI.display_backlog(@project)
     end
   end
 
   describe "display_current" do
     it "displays the current project's in-progress items" do
-      STDOUT.should_receive(:print).with("  ---------------- Current ----------------  \n")
-      STDOUT.should_receive(:print).with(@project.current.first.overview)
-      STDOUT.should_receive(:print).with("\n")
+      $stdout.should_receive(:print).with("  ---------------- Current ----------------  \n")
+      $stdout.should_receive(:print).with(@project.current.first.overview)
+      $stdout.should_receive(:print).with("\n")
       Sly::GUI.display_current(@project)
     end
   end

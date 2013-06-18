@@ -24,7 +24,7 @@ class Sly::Item
   alias_method :to_s, :overview
 
   def print
-    STDOUT.print self.overview
+    $stdout.print self.overview
   end
 
   def prettify(content, wrap_limit)

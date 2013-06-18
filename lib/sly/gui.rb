@@ -20,8 +20,8 @@ class Sly::GUI
   private
 
   def self.display_items(title, items)
-    STDOUT.print "  ---------------- #{title} ----------------  \n"
+    $stdout.print "  ---------------- #{title} ----------------  \n"
     items.map(&:print)
-    STDOUT.print "\n"
+    $stdout.print "\n"
   end
 end

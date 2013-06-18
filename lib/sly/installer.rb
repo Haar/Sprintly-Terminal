@@ -8,7 +8,7 @@ class Sly::Installer
 
     if success_call?(results)
       create_file(username, password)
-      STDOUT.write "Thanks! Your details are currently stored in ~/.slyrc to authorise your interactions using the Sprint.ly CLI\n"
+      $stdout.write "Thanks! Your details are currently stored in ~/.slyrc to authorise your interactions using the Sprint.ly CLI\n"
     else
       raise "The details provided were incorrect, please check your details and try again."
     end
