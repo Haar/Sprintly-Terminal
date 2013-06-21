@@ -23,3 +23,5 @@ To run the suite of tests, simply use the standard `rake` command.
 ## Change log
 
 v0.0.5 - Add offline support
+v0.0.6 - Add automatic item branching
+v0.0.7 - Minor fix for item branching

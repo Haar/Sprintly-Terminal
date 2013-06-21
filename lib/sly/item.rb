@@ -47,7 +47,7 @@ class Sly::Item
   end
 
   def slug
-    self.title.downcase.gsub(/(&|&amp;)/, ' and ').strip.gsub(/ to | the |[^\w\s]/, '').gsub(/ +|_+/, '-')
+    self.title.downcase.gsub(/(&|&amp;)/, ' and ').strip.gsub(/[^\w\s]/, '').gsub(/ to | the | +|_+/, '-')
   end
 
   def git_slug
