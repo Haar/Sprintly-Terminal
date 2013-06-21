@@ -55,11 +55,11 @@ command :current do |c|
   end
 end
 
-desc 'Describe new here'
-arg_name 'Describe arguments to new here'
-command :new do |c|
+desc 'Setup git to for the target story id'
+arg_name :id, 'the item id of the story you wish to branch for'
+command :branch do |c|
   c.action do |global_options,options,args|
-    puts "new command ran"
+    Sly::Branch.for(args[0])
   end
 end
 
