@@ -3,8 +3,23 @@ require 'rainbow'
 class Sly::Item
 
   TYPE_COLOR = { task: :black, test: :blue, defect: :red, story: :green }
+  TYPES = { "task" => :task, "defect" => :defect, "story" => :feature }
 
   attr_accessor :number, :archived, :title, :score, :tags, :status, :type
+
+  def self.with_number(number)
+    begin
+      items = YAML::load(File.open(File.join(".sly", "items")))
+    rescue Exception => e
+      raise "Unable to locate project files"
+    end
+
+    if items
+      items.select { |i| i.number.to_s == number.to_s }.first
+    else
+      nil
+    end
+  end
 
   def initialize(item_attributes = {})
     @number   = item_attributes["number"]
@@ -13,7 +28,7 @@ class Sly::Item
     @score    = item_attributes["score"]
     @tags     = item_attributes["tags"]
     @status   = item_attributes["status"]
-    @type     = item_attributes["type"].to_sym
+    @type     = TYPES[item_attributes["type"]].to_sym
   end
 
   def overview
