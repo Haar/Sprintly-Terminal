@@ -31,6 +31,14 @@ class Sly::Item
     content.scan(/\S.{0,#{wrap_limit}}\S(?=\s|$)|\S+/).join("\n")
   end
 
+  def slug
+    self.title.downcase.gsub(/(&|&amp;)/, ' and ').strip.gsub(/ to | the |[^\w\s]/, '').gsub(/ +|_+/, '-')
+  end
+
+  def git_slug
+    "#{self.type}/" + self.slug.slice(0, 60) + "-#{self.number}"
+  end
+
   private
 
   def type_colour

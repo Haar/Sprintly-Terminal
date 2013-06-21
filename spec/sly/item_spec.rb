@@ -72,4 +72,48 @@ describe Sly::Item do
       @item.print
     end
   end
+
+  describe :slug do
+    before :each do
+      @item = Sly::Item.new(@item_hash)
+    end
+
+    it "removes common connective words" do
+      @item.slug.should_not include 'to'
+    end
+
+    it "strips whitespace from the title" do
+      @item.slug.should_not include ' '
+    end
+
+    it "removes non-alphanumeric characters" do
+      @item.slug.should_not include '.'
+    end
+
+    it "removes capitalized characters" do
+      @item.title = "FOO"
+      @item.slug.should_not =~ /[A-Z]/
+    end
+
+    it "replaces underscores with hyphens" do
+      @item.title = "_"
+      @item.slug.should =~ /-/
+    end
+
+    it "replaces & with ' and '" do
+      @item.title = "&"
+      @item.slug.should include "and"
+    end
+  end
+
+  describe :git_slug do
+    let(:item) { Sly::Item.new(@item_hash) }
+    it "appends the item number" do
+      item.git_slug.should =~ /-#{item.number}$/
+    end
+
+    it "prepends the story type" do
+      item.git_slug.should =~ /^task\/*/
+    end
+  end
 end
