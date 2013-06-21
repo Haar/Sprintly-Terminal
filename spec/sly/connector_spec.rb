@@ -4,15 +4,15 @@ require 'spec_helper'
 include FileUtils
 
 describe Sly::Connector, integration: true do
-  before(:all) do
-    @sly = Sly::Connector.new({email: ENV["sprintly_email"], api_key: ENV['sprintly_api_key']})
-  end
-
   describe :authentication do
     it "returns the request response as a hash" do
       sly = Sly::Connector.new({email: "incorrect_user_email", api_key: "incorrect_key"})
       sly.authenticate!.should == {"message" => "Invalid or unknown user.", "code" => 403}
     end
+  end
+
+  before(:all) do
+    @sly = Sly::Connector.new({email: ENV["sprintly_email"], api_key: ENV['sprintly_api_key']})
   end
 
   describe :products do
@@ -21,9 +21,8 @@ describe Sly::Connector, integration: true do
     end
 
     it "returns an array of hashes representing each users product" do
-      @sly = Sly::Connector.new({email: ENV["sprintly_email"], api_key: ENV['sprintly_api_key']})
       @sly.products.first.class.should == Hash
-      @sly.products.map(&:values).flatten.should include "Raptor"
+      @sly.products.map(&:values).flatten.should include ENV["sprintly_product_name"]
     end
   end
 
@@ -55,7 +54,7 @@ describe Sly::Connector, integration: true do
     end
 
     it "returns items for that product" do
-      @items.first["product"].should == {"archived"=>0, "id"=>ENV["sprintly_product_id"].to_i, "name"=>ENV["sprintly_product_name"]}
+      @items.first["product"].should == {"archived"=> false, "id"=>ENV["sprintly_product_id"].to_i, "name"=>ENV["sprintly_product_name"]}
     end
   end
 

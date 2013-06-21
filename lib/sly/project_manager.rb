@@ -22,7 +22,9 @@ class Sly::ProjectManager
   end
 
   def setup_project(directory, project_id)
-    target_file = File.join(directory, ".sly")
+    target_directory = File.join(directory, ".sly")
+    target_file = File.join(target_directory, "project")
+    mkdir_p target_directory
     touch target_file
     selected_project = @available_projects.select { |project| project.id == project_id.to_i }.first
     if selected_project

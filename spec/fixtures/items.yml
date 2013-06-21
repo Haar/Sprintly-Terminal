@@ -1,0 +1,97 @@
+---
+- status: accepted
+  product:
+    archived: false
+    id: 1
+    name: sprint.ly
+  description: 'Basic description'
+  tags:
+  - scoring
+  - backlog
+  number: 204
+  archived: false
+  title: Add the ability to reply to comments via email.
+  created_by:
+    first_name: Joe
+    last_name: Stump
+    id: 1
+    email: joe@joestump.net
+  score: M
+  assigned_to:
+    first_name: Joe
+    last_name: Stump
+    id: 1
+    email: joe@joestump.net
+  type: task
+- status: backlog
+  product:
+    archived: false
+    id: 1
+    name: sprint.ly
+  description: ''
+  tags:
+  - scoring
+  - backlog
+  number: 208
+  archived: false
+  title: Add the ability to reply to comments via email.
+  created_by:
+    first_name: Joe
+    last_name: Stump
+    id: 2
+    email: joe@joestump.net
+  score: M
+  assigned_to:
+    first_name: Joe
+    last_name: Stump
+    id: 1
+    email: joe@joestump.net
+  type: task
+- status: in-progress
+  product:
+    archived: false
+    id: 3
+    name: sprint.ly
+  description: ''
+  tags:
+  - scoring
+  - random
+  number: 208
+  archived: false
+  title: Fake title number 2
+  created_by:
+    first_name: Bill
+    last_name: Gates
+    id: 203
+    email: bill@gates.net
+  score: M
+  assigned_to:
+    first_name: George
+    last_name: Foreman
+    id: 1
+    email: big_george@george.foreman
+  type: task
+- status: complete
+  product:
+    archived: false
+    id: 3
+    name: sprint.ly
+  description: ''
+  tags:
+  - magic marker
+  - super pen
+  number: 208
+  archived: false
+  title: There's something about Mary
+  created_by:
+    first_name: Joe
+    last_name: Stump
+    id: 1
+    email: joe@joestump.net
+  score: M
+  assigned_to:
+    first_name: Joe
+    last_name: Stump
+    id: 1
+    email: joe@joestump.net
+  type: task

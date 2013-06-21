@@ -1,5 +1,3 @@
-require 'net/http'
-require 'uri'
 require 'curb'
 require 'json'
 
