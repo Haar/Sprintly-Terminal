@@ -27,3 +27,4 @@ To run the suite of tests, simply use the standard `rake` command.
 v0.0.5 - Add offline support
 v0.0.6 - Add automatic item branching
 v0.0.7 - Minor fix for item branching
+v0.0.8 - Remove unimplemented functionality from help

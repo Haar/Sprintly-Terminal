@@ -63,14 +63,6 @@ command :branch do |c|
   end
 end
 
-desc 'Describe move here'
-arg_name 'Describe arguments to move here'
-command :move do |c|
-  c.action do |global_options,options,args|
-    puts "move command ran"
-  end
-end
-
 pre do |global,command,options,args|
   # Pre logic here
   # Return true to proceed; false to abourt and not call the
