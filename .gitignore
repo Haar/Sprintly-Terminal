@@ -23,3 +23,7 @@ doc/
 #Rspec customisation
 .rspec
 results.html
+
+#RVM
+.ruby-version
+.ruby-gemset

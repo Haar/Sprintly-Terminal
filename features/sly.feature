@@ -7,14 +7,10 @@ Feature: Sly contains the basic functionality required
     When I get help for "sly"
     Then the exit status should be 0
 
-  Scenario: Initial setup
-    When I run the "sly" install command
-    And I fill in my username
-    And I fill in my api key
-    Then the stdout should contain "Please enter your Sprint.ly username (email):"
-    And the stdout should contain "Please enter your Sprint.ly API key:"
-    And the stdout should contain "Thanks! Your details are currently stored in ~/.slyrc to authorise your interactions using the Sprint.ly CLI"
-    And I should have a ".slyrc" file in my home directory
+  Scenario: Initial install
+    When I install sly using a correct username and api key
+    Then I should see the output has asked me for my details
+    And I should see that it has authorised correctly
 
   Scenario: Setup for project without prior install
     Given I do not have a ".slyrc" file in my home directory
@@ -27,5 +23,21 @@ Feature: Sly contains the basic functionality required
     When I run the "sly" setup command
     And I select the intended project option
     Then I should have a .sly file in my project folder
-    And I should see my stored project name in the stdout
-    And the stdout should contain "Thanks! That's Sly all setup for the current project, run `sly help` to see the commands available."
+    And the output should contain "Thanks! That's Sly all setup for the current project, run `sly help` to see the commands available."
+
+  Scenario: Sly Backlog
+    Given I have already set up Sly
+    And I have already setup my project folder
+    When I run `sly backlog`
+    Then the output should contain "Backlog"
+    And the output should contain "208"
+    And the output should contain "Add the ability to reply to comments via email."
+
+  Scenario: Sly Current
+    Given I have already set up Sly
+    And I have already setup my project folder
+    When I run `sly current`
+    Then the stderr should contain "bar"
+    Then the output should contain "Current"
+    And the output should contain "188"
+    And the output should contain "Don't let un-scored items out of the backlog."

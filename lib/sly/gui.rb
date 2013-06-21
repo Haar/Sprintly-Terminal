@@ -8,4 +8,20 @@ class Sly::GUI
       get_project_id(manager)
     end
   end
+
+  def self.display_backlog(project)
+    self.display_items("Backlog", project.backlog)
+  end
+
+  def self.display_current(project)
+    self.display_items("Current", project.current)
+  end
+
+  private
+
+  def self.display_items(title, items)
+    $stdout.print "  ---------------- #{title} ----------------  \n"
+    items.map(&:print)
+    $stdout.print "\n"
+  end
 end

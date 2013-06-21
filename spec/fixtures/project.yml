@@ -1,0 +1,5 @@
+--- !ruby/object:Sly::Project
+id: 1
+name: Sprint.ly
+archived: false
+admin: true

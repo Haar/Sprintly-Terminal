@@ -1,9 +1,13 @@
-source :rubygems
+source "https://rubygems.org"
 gemspec
 
 gem "curb"
 gem "json"
 
-group :test do
-  gem 'rspec'
+gem "rainbow"
+
+group :development, :test do
+  gem "cucumber"
+  gem "rspec"
+  gem "webmock"
 end

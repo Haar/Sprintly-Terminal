@@ -36,12 +36,12 @@ describe Sly::ProjectManager do
     context "correct id" do
       it "creates a .sly file in the project folder" do
         @manager.setup_project("/tmp", ENV["sprintly_product_id"])
-        File.exists?(SLY_LOCATION).should be_true
+        File.exists?(SLY_LOCATION+"/project").should be_true
       end
 
-      it "writes the project id to the .sly file" do
+      it "writes the project id to the .sly/project file" do
         @manager.setup_project("/tmp", ENV["sprintly_product_id"])
-        File.read(SLY_LOCATION).should include "id: #{ENV["sprintly_product_id"]}"
+        File.read(SLY_LOCATION+"/project").should include "id: #{ENV["sprintly_product_id"]}"
       end
     end
   end
