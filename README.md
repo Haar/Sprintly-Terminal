@@ -13,6 +13,8 @@ Project to create a `nice` terminal interface for the Sprint.ly task management 
   - Stores a .sly file in the project folder to store the linking details (specifically ID)
 - Stories
   - A small overview of the backlog, current and completed columns
+- Branching
+  - Lets you create (if required) and checkout a named branch for a specific story, grouped into folders by their type
 
 ### Testing
 
