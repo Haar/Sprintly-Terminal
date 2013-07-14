@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    sly (0.0.9)
+    sly (0.0.10)
       curb (>= 0.8)
       gli (>= 2.5.0)
       json (>= 1.4)
@@ -29,7 +29,7 @@ GEM
     ffi (1.2.0)
     gherkin (2.11.5)
       json (>= 1.4.6)
-    gli (2.5.6)
+    gli (2.6.0)
     json (1.7.5)
     rainbow (1.1.4)
     rake (10.0.2)
