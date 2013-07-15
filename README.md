@@ -30,6 +30,7 @@ To run the suite of tests, simply use the standard `rake` command.
   - v0.0.8  - Remove unimplemented functionality from help
   - v0.0.9  - Minor fix for item colour breakage
   - v0.0.10 - Update website details
+  - v0.0.11 - Add license details to gemspec
 
 ## Licensing
 

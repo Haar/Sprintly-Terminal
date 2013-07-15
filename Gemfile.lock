@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    sly (0.0.10)
+    sly (0.0.11)
       curb (>= 0.8)
       gli (>= 2.5.0)
       json (>= 1.4)
