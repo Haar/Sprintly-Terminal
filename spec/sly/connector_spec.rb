@@ -54,21 +54,20 @@ describe Sly::Connector, integration: true do
     end
 
     it "returns items for that product" do
-      @items.first["product"].should == {"archived"=> false, "id"=>ENV["sprintly_product_id"].to_i, "name"=>ENV["sprintly_product_name"]}
+      @items.first["product"].should == {"archived"=> false,
+                                         "id"=>ENV["sprintly_product_id"].to_i,
+                                         "name"=>ENV["sprintly_product_name"]}
     end
   end
 
   describe :connect_with_defaults do
     before :each do
-      touch(File.join(ENV["HOME"], ".slyrc"))
+      File.write(File.join(ENV["HOME"], ".slyrc"), "foo:bar")
     end
+
     context "having been installed" do
-      it "loads the default file location" do
-
-      end
-
       it "returns a copy of itself initialized with values loaded from the HOME directory" do
-        Sly::Connector.should_receive(:new)
+        Sly::Connector.should_receive(:new).with(email: "foo", api_key: "bar")
         Sly::Connector.connect_with_defaults
       end
     end
@@ -80,7 +79,8 @@ describe Sly::Connector, integration: true do
       end
 
       it "raises an exception" do
-        expect { Sly::Connector.connect_with_defaults }.to raise_exception "Could not locate installation file at /tmp/fakehome/.slyrc"
+        expect { Sly::Connector.connect_with_defaults }
+          .to raise_exception "Could not locate installation file at /tmp/fakehome/.slyrc"
       end
     end
   end
