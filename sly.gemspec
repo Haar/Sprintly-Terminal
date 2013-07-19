@@ -9,7 +9,8 @@ spec = Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.summary     = 'A small set of tools for working with Sprint.ly without leaving the command line.'
   s.description = 'A small set of tools for working with Sprint.ly without leaving the command line.'
-  s.license = "cc-zero"
+  s.license     = "cc-zero"
+  s.required_ruby_version = '>= 1.9.2'
 # Add your other files here if you make them
   s.files = Dir['bin/sly', 'lib/sly/version.rb', 'lib/sly.rb', 'lib/sly/*.rb']
   s.require_paths << 'lib'

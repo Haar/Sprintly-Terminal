@@ -31,6 +31,7 @@ To run the suite of tests, simply use the standard `rake` command.
   - v0.0.9  - Minor fix for item colour breakage
   - v0.0.10 - Update website details
   - v0.0.11 - Add license details to gemspec
+  - v0.0.12 - Display error to user when attempting to use a Ruby version < 1.9.2
 
 ## Licensing
 
