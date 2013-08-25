@@ -47,7 +47,13 @@ class Sly::Item
   end
 
   def slug
-    self.title.downcase.gsub(/(&|&amp;)/, ' and ').strip.gsub(/[^\w\s]/, '').gsub(/ to | the | +|_+/, '-')
+    if self.type == :feature
+      slug_string = self.title.downcase.match(/(as a.*i want.*) so that.*/)[1]
+    else
+      slug_string = self.title.downcase
+    end
+
+    slug_string.gsub(/(&|&amp;)/, 'and').gsub(/ to | the |\s+|_+|\//, '-').gsub(/[^\w-]/, '').squeeze('-')
   end
 
   def git_slug
