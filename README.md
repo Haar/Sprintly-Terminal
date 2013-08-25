@@ -33,6 +33,7 @@ To run the suite of tests, simply use the standard `rake` command.
   - v0.0.11 - Add license details to gemspec
   - v0.0.12 - Display error to user when attempting to use a Ruby version < 1.9.2
   - v0.1.0  - Bump Gem version as part of fixing RubyGems deployment process
+  - v0.1.1  - Shorten branch names for feature stories
 
 ## Licensing
 
