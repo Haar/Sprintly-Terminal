@@ -100,6 +100,16 @@ describe Sly::Item do
       @item.slug.should =~ /-/
     end
 
+    it 'replaces slashes with hyphens' do
+      @item.title = "/"
+      @item.slug.should =~ /-/
+    end
+
+    it 'replaces successive hyphens' do
+      @item.title = "---"
+      @item.slug.should == "-"
+    end
+
     it "replaces & with ' and '" do
       @item.title = "&"
       @item.slug.should include "and"
@@ -114,6 +124,14 @@ describe Sly::Item do
 
     it "prepends the story type" do
       item.git_slug.should =~ /^task\/*/
+    end
+
+    context 'when a feature item' do
+      it 'uses the first two components of the description' do
+        item.type = :feature
+        item.title = 'As a user I want better branch names so that my pull-requests/descriptions are easier to understand.'
+        item.git_slug.should == 'feature/as-a-user-i-want-better-branch-names-204'
+      end
     end
   end
 end

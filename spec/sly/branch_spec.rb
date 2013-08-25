@@ -34,14 +34,14 @@ describe Sly::Branch do
       before do
         Sly::Item.stub(with_number: Sly::Item.new("number" => "500", "type"   => "story",
                                                   "status" => "in-progress", "score"  => "M",
-                                                  "title"  => "Magical wonderful story to narnia")
+                                                  "title"  => "As a user I want a title so that this makes sense")
                                                  )
       end
 
       context "branch does not exist" do
         it "creates the git branch" do
           Sly::Branch.for("500")
-          Sly::Branch.git(:branch).should =~ / feature\/magical-wonderful-story-narnia-500\n/
+          Sly::Branch.git(:branch).should =~ / feature\/as-a-user-i-want-a-title-500\n/
         end
       end
 
