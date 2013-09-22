@@ -19,12 +19,15 @@ spec = Gem::Specification.new do |s|
   s.rdoc_options << '--title' << 'sly' << '--main' << 'README.rdoc' << '-ri'
   s.bindir = 'bin'
   s.executables << 'sly'
+  s.add_dependency('curb', '>= 0.8')
+  s.add_dependency('json', '>= 1.4')
+  s.add_dependency('rainbow')
+  s.add_dependency('gli','>= 2.5.0')
+
   s.add_development_dependency('rake')
   s.add_development_dependency('rdoc')
   s.add_development_dependency('aruba')
   s.add_development_dependency('webmock')
-  s.add_dependency('curb', '>= 0.8')
-  s.add_dependency('json', '>= 1.4')
-  s.add_runtime_dependency('gli','>= 2.5.0')
-  s.add_runtime_dependency('rainbow')
+  s.add_development_dependency('cucumber')
+  s.add_development_dependency('rspec')
 end
