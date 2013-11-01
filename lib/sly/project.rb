@@ -32,7 +32,7 @@ class Sly::Project
     end
   end
 
-  def update(status = "backlog")
+  def update(status = nil)
     begin
       download_child_items(status)
       save_child_items(status)

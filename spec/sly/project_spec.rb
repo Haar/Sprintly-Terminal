@@ -65,12 +65,12 @@ describe Sly::Project do
                                      "admin"    => true,
                                      "id"       => ENV["sprintly_product_id"].to_i})
         @stub_connector = stub(:connector)
-        @stub_connector.stub(:items_for_product).with(@project.id).and_return(YAML::load(File.open("spec/fixtures/items.yml")))
+        @stub_connector.stub(:items_for_product).with(@project.id, nil).and_return(YAML::load(File.open("spec/fixtures/items.yml")))
         Sly::Connector.stub(:connect_with_defaults).and_return(@stub_connector)
       end
 
       it "downloads new items" do
-        @stub_connector.should_receive(:items_for_product).with(@project.id)
+        @stub_connector.should_receive(:items_for_product).with(@project.id, nil)
         @project.update
       end
 
@@ -99,7 +99,7 @@ describe Sly::Project do
                                      "admin"    => true,
                                      "id"       => ENV["sprintly_product_id"].to_i})
         @stub_connector = stub(:connector)
-        @stub_connector.stub(:items_for_product).with(@project.id).and_return(YAML::load(File.open("spec/fixtures/items.yml")))
+        @stub_connector.stub(:items_for_product).with(@project.id, nil).and_return(YAML::load(File.open("spec/fixtures/items.yml")))
         Sly::Connector.stub(:connect_with_defaults).and_return(@stub_connector)
         @project.update
       end

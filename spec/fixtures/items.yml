@@ -71,7 +71,7 @@
     id: 1
     email: big_george@george.foreman
   type: task
-- status: complete
+- status: completed
   product:
     archived: false
     id: 3
