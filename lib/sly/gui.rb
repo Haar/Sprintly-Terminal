@@ -17,6 +17,10 @@ class Sly::GUI
     self.display_items("Current", project.current)
   end
 
+  def self.display_complete(project)
+    self.display_items("Complete", project.complete)
+  end
+
   private
 
   def self.display_items(title, items)

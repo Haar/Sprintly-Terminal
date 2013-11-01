@@ -39,7 +39,7 @@ desc 'shows the current backlog for the project.'
 command :backlog do |c|
   c.action do |global_options,options,args|
     project = Sly::Project.load(SLY_PROJECT)
-    project.update
+    project.update("backlog")
     Sly::GUI.display_backlog(project)
   end
 end
@@ -48,8 +48,17 @@ desc 'shows the current in-progress for the project.'
 command :current do |c|
   c.action do |global_options,options,args|
     project = Sly::Project.load(SLY_PROJECT)
-    project.update
+    project.update("in-progress")
     Sly::GUI.display_current(project)
+  end
+end
+
+desc 'shows the complete items for the project.'
+command :complete do |c|
+  c.action do |global_options,options,args|
+    project = Sly::Project.load(SLY_PROJECT)
+    project.update("completed")
+    Sly::GUI.display_complete(project)
   end
 end
 

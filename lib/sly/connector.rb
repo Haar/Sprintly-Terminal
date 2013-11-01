@@ -30,8 +30,8 @@ class Sly::Connector
     perform_and_capture_response(request)
   end
 
-  def items_for_product(id)
-    request = authenticated_request(@api_url+"/products/#{id}/items.json")
+  def items_for_product(id, status = "backlog")
+    request = authenticated_request(@api_url+"/products/#{id}/items.json?status=#{status}")
     perform_and_capture_response(request)
   end
 

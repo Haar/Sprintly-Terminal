@@ -32,13 +32,13 @@ class Sly::Project
     end
   end
 
-  def update
+  def update(status = "backlog")
     begin
-      download_child_items
-      save_child_items
+      download_child_items(status)
+      save_child_items(status)
     rescue Exception
       puts " Failed to connect to the Sprint.ly service, using last known values. ".colour(:white).background(:red)
-      load_child_items
+      load_child_items(status)
     end
   end
 
@@ -51,23 +51,23 @@ class Sly::Project
   end
 
   def complete
-    @items.select { |item| item.status == "complete" }
+    @items.select { |item| item.status == "completed" }
   end
 
   private
 
-  def download_child_items
-    items = Sly::Connector.connect_with_defaults.items_for_product(@id)
+  def download_child_items(status)
+    items = Sly::Connector.connect_with_defaults.items_for_product(@id, status)
     items.each { |item| @items << Sly::Item.new(item) }
   end
 
-  def save_child_items
-    target_file = File.join(pwd, '.sly', 'items')
+  def save_child_items(status)
+    target_file = File.join(pwd, '.sly', "#{status}_items")
     File.open(target_file, 'w') { |file| file.write @items.to_yaml }
   end
 
-  def load_child_items
-    target_file = File.join(pwd, '.sly', 'items')
+  def load_child_items(status)
+    target_file = File.join(pwd, '.sly', "#{status}_items")
     @items = YAML::load(File.open(target_file))
   end
 
