@@ -36,7 +36,8 @@ class Sly::Project
     begin
       download_child_items(status)
       save_child_items(status)
-    rescue Exception
+    rescue Exception => e
+      puts e
       puts " Failed to connect to the Sprint.ly service, using last known values. ".colour(:white).background(:red)
       load_child_items(status)
     end
