@@ -42,6 +42,10 @@ describe Sly::Item do
     it "sets the type" do
       @item.type.should == :task
     end
+
+    it "sets the assigned to status" do
+      @item.assigned_to.should == "Assigned to Joe Stump"
+    end
   end
 
   describe :overview do
