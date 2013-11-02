@@ -5,7 +5,7 @@ class Sly::Item
   TYPE_COLOR = { task: :black, test: :blue, defect: :red, feature: :green }
   TYPES = { "task" => :task, "defect" => :defect, "story" => :feature, "test" => :test}
 
-  attr_accessor :number, :archived, :title, :score, :tags, :status, :type
+  attr_accessor :number, :archived, :title, :score, :tags, :status, :type, :assigned_to
 
   def self.with_number(number)
     begin
@@ -22,18 +22,19 @@ class Sly::Item
   end
 
   def initialize(item_attributes = {})
-    @number   = item_attributes["number"]
-    @archived = item_attributes["archived"]
-    @title    = item_attributes["title"]
-    @score    = item_attributes["score"]
-    @tags     = item_attributes["tags"]
-    @status   = item_attributes["status"]
-    @type     = TYPES[item_attributes["type"]].to_sym
+    @number       = item_attributes["number"]
+    @archived     = item_attributes["archived"]
+    @title        = item_attributes["title"]
+    @score        = item_attributes["score"]
+    @tags         = item_attributes["tags"]
+    @status       = item_attributes["status"]
+    @type         = TYPES[item_attributes["type"]].to_sym
+    @assigned_to  = assigned_to_s(item_attributes["assigned_to"])
   end
 
   def overview
-    quick_ref = "##{@number} - ".color(type_colour) + " #{@score} ".background(type_colour).color(:white)
-    self.prettify([quick_ref, @title.color(type_colour)].join("\n"), 44)+"\n"
+    quick_ref = "##{@number} - ".color(type_colour) + " #{@score} ".background(type_colour).color(:white) + " #{@assigned_to} ".color(type_colour)
+    self.prettify([quick_ref, @title.color(type_colour)].join("\n"), 180)+"\n"
   end
 
   alias_method :to_s, :overview
@@ -64,6 +65,11 @@ class Sly::Item
 
   def type_colour
     TYPE_COLOR[@type]
+  end
+
+  def assigned_to_s(assigned_to)
+    assigned_to ?
+      "Assigned to #{assigned_to["first_name"]} #{assigned_to["last_name"]}" : "Unassigned"
   end
 
 end
