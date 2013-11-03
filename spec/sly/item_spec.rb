@@ -44,7 +44,7 @@ describe Sly::Item do
     end
 
     it "sets the assigned to status" do
-      @item.assigned_to.should == "Assigned to Joe Stump"
+      @item.assigned_to.should == "Joe S."
     end
   end
 
@@ -63,6 +63,19 @@ describe Sly::Item do
 
     it "includes the item number preceeded by a #" do
       @item.overview.should include "##{@item.number}"
+    end
+
+    context 'when the item has an assignee' do
+      it 'includes the assignee name' do
+        @item.overview.should include @item.assigned_to
+      end
+    end
+
+    context 'when the item has no assignee' do
+      it 'displays that the item is unassigned' do
+        @item.assign(nil)
+        @item.overview.should include 'Unassigned'
+      end
     end
   end
 

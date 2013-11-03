@@ -29,12 +29,12 @@ class Sly::Item
     @tags         = item_attributes["tags"]
     @status       = item_attributes["status"]
     @type         = TYPES[item_attributes["type"]].to_sym
-    @assigned_to  = assigned_to_s(item_attributes["assigned_to"])
+    assign(item_attributes["assigned_to"])
   end
 
   def overview
     quick_ref = "##{@number} - ".color(type_colour) + " #{@score} ".background(type_colour).color(:white) + " #{@assigned_to} ".color(type_colour)
-    self.prettify([quick_ref, @title.color(type_colour)].join("\n"), 75)+"\n"
+    self.prettify([quick_ref, @title.color(type_colour)].join("\n"), 64)+"\n"
   end
 
   alias_method :to_s, :overview
@@ -61,15 +61,14 @@ class Sly::Item
     "#{self.type}/" + self.slug.slice(0, 60) + "-#{self.number}"
   end
 
+  def assign(assigned_to)
+    @assigned_to = assigned_to ?
+      "#{assigned_to["first_name"]} #{assigned_to["last_name"][0]}." : "Unassigned"
+  end
+
   private
 
   def type_colour
     TYPE_COLOR[@type]
   end
-
-  def assigned_to_s(assigned_to)
-    assigned_to ?
-      "Assigned to #{assigned_to["first_name"]} #{assigned_to["last_name"]}" : "Unassigned"
-  end
-
 end
