@@ -34,7 +34,7 @@ class Sly::Item
 
   def overview
     quick_ref = "##{@number} - ".color(type_colour) + " #{@score} ".background(type_colour).color(:white) + " #{@assigned_to} ".color(type_colour)
-    self.prettify([quick_ref, @title.color(type_colour)].join("\n"), 180)+"\n"
+    self.prettify([quick_ref, @title.color(type_colour)].join("\n"), 75)+"\n"
   end
 
   alias_method :to_s, :overview
