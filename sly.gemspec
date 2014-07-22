@@ -21,7 +21,7 @@ spec = Gem::Specification.new do |s|
   s.executables << 'sly'
   s.add_dependency('curb', '>= 0.8')
   s.add_dependency('json', '>= 1.4')
-  s.add_dependency('rainbow')
+  s.add_dependency('rainbow', '>= 2.0')
   s.add_dependency('gli','>= 2.5.0')
 
   s.add_development_dependency('rake')
