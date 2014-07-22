@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe Sly::Installer do
+  let!(:old_stdout) { $stdout }
+  before { $stdout = double(:stdout, write: nil, print: nil) }
+  after { $stdout = old_stdout }
+
   describe :process do
     it "checks the details are valid" do
       connector_stub = stub(:connector)

@@ -15,7 +15,7 @@ class Sly::Item
     end
 
     if items
-      items.select { |i| i.number.to_s == number.to_s }.first
+      items.values.flatten.select { |i| i.number.to_s == number.to_s }.first
     else
       nil
     end

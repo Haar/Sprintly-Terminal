@@ -3,8 +3,8 @@ require 'spec_helper'
 describe Sly::VersionChecker do
 
   describe "#run" do
-    before { OLD_RUBY_VERSION = RUBY_VERSION }
-    after { RUBY_VERSION = OLD_RUBY_VERSION }
+    let!(:old_ruby_version) { RUBY_VERSION }
+    after(:suite) { RUBY_VERSION = old_ruby_version }
 
     context "when running a version < 1.9.2" do
       it "raises an exception" do
