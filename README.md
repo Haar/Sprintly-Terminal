@@ -16,6 +16,13 @@ Project to create a `nice` terminal interface for the Sprint.ly task management 
 - Branching
   - Lets you create (if required) and checkout a named branch for a specific story, grouped into folders by their type
 
+
+## Issues
+
+Bug reports and pull requests are welcome :)
+
+Some times there are minor changes to how Sly caches data between releases; if you find Sly randomly stops working when upgrading your version, simply remove your .sly folder and run sly setup again.
+
 ### Testing
 
 Unfortunately, the majority of testing (of the Sly CLI) requires a Sprint.ly account - then again, why would you be touching this if you didn't have an account in the first place? :P
