@@ -37,6 +37,7 @@ To run the suite of tests, simply use the standard `rake` command.
   - v0.1.2  - Fix GLI usage/help details and bugs on certain repositories
   - v0.2.2  - Add completed story column functionality back in
   - v0.2.3  - Add assignee to item overviews
+  - v0.2.4  - Fix Rainbow dependency issue + branching/caching issues
 
 ## Licensing
 
