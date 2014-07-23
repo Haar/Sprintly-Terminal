@@ -81,7 +81,7 @@ describe Sly::Project do
 
       it "inserts the items to the projects items attribute" do
         @project.update
-        @project.items.uniq.count.should == 4
+        @project.items.values.flatten.count.should == 4
       end
 
       it "write the child items to the .sly/items file" do

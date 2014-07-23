@@ -3,3 +3,7 @@ id: 1
 name: Sprint.ly
 archived: false
 admin: true
+items:
+  backlog: []
+  in-progress: []
+  completed: []

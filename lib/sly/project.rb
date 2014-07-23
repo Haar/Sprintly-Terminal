@@ -13,7 +13,9 @@ class Sly::Project
     @name = project_attributes["name"]
     @archived = project_attributes["archived"]
     @admin = project_attributes["admin"]
-    @items = []
+    @items = {
+      'backlog' => [], 'in-progress' => [], 'completed' => [], 'accepted' => []
+    }
   end
 
   def save!
@@ -33,43 +35,58 @@ class Sly::Project
   end
 
   def update(status = nil)
+    load_state rescue nil
     begin
       download_child_items(status)
-      save_child_items(status)
+      save_state
     rescue Exception => e
-      puts e
+      puts e.message
+      puts e.backtrace
       puts " Failed to connect to the Sprint.ly service, using last known values. ".colour(:white).background(:red)
-      load_child_items(status)
+      load_state
     end
   end
 
   def backlog
-    @items.select { |item| item.status == "backlog" }
+    @items['backlog']
   end
 
   def current
-    @items.select { |item| item.status == "in-progress" }
+    @items['in-progress']
   end
 
   def complete
-    @items.select { |item| item.status == "completed" }
+    @items['completed']
   end
 
   private
 
   def download_child_items(status)
     items = Sly::Connector.connect_with_defaults.items_for_product(@id, status)
-    items.each { |item| @items << Sly::Item.new(item) }
+
+    clear_existing_items(status)
+
+    items.each do |item|
+      @items[item['status']] << Sly::Item.new(item)
+    end
   end
 
-  def save_child_items(status)
-    target_file = File.join(pwd, '.sly', "#{status}_items")
+  def save_state
+    target_file = File.join(pwd, '.sly', 'items')
     File.open(target_file, 'w') { |file| file.write @items.to_yaml }
   end
 
-  def load_child_items(status)
-    target_file = File.join(pwd, '.sly', "#{status}_items")
+  def load_state
+    target_file = File.join(pwd, '.sly', 'items')
     @items = YAML::load(File.open(target_file))
+  end
+
+  def clear_existing_items(status)
+    if status.nil?
+      @items.keys.each { |key| @items[key] = [] }
+    else
+      @items[status] = []
+    end
   end
 
 end

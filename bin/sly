@@ -2,7 +2,7 @@
 require 'gli'
 require 'sly'
 
-SLY_PROJECT = File.join(".sly", "project")
+SLY_PROJECT = File.join(pwd, ".sly", "project")
 
 include GLI::App
 
